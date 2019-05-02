@@ -82,10 +82,12 @@ SRC =  ft_memset.c \
 
 OBJECT = $(SRC:.c=.o)
 
+INCLUDE = libft.h
+
 all: $(NAME)
 
 $(NAME):
-		@$(GCCW) -c $(SRC)
+		@$(GCCW) -c $(SRC) -I $(INCLUDE)
 		@ar rc $(NAME) $(OBJECT)
 		@ranlib $(NAME)
 
