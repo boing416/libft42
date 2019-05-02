@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = libft.a
-GCCW = gcc -Wall -Werror -Wextra
+
 SRC =  ft_memset.c \
 		ft_bzero.c \
 		ft_memcpy.c \
@@ -80,23 +80,21 @@ SRC =  ft_memset.c \
 		ft_lstiter.c \
 		ft_lstmap.c
 
-OBJECT = $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 INCLUDE = libft.h
 
 all: $(NAME)
 
 $(NAME):
-		@$(GCCW) -c $(SRC) -I $(INCLUDE)
-		@ar rc $(NAME) $(OBJECT)
-		@ranlib $(NAME)
+	@gcc -c -Wall -Wextra -Werror $(SRC) -I $(INCLUDE)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 clean:
-		@/bin/rm -rf -f $(OBJECT)
+	@/bin/rm -f $(OBJ)
 
 fclean: clean
-		@/bin/rm -rf -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
