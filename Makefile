@@ -10,8 +10,20 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mnurkass <mnurkass@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/04/29 11:23:15 by mnurkass          #+#    #+#              #
+#    Updated: 2019/05/02 17:02:56 by mnurkass         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
+NAME = libft.a
+GCCW = gcc -Wall -Werror -Wextra
 SRC =  ft_memset.c \
 		ft_bzero.c \
 		ft_memcpy.c \
@@ -72,21 +84,21 @@ SRC =  ft_memset.c \
 		ft_lstiter.c \
 		ft_lstmap.c
 
-OBJ = $(SRC:.c=.o)
-
-INCLUDE = libft.h
+OBJECT = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME):
-	@gcc -c -Wall -Wextra -Werror $(SRC) -I $(INCLUDE)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+		@$(GCCW) -c $(SRC)
+		@ar rc $(NAME) $(OBJECT)
+		@ranlib $(NAME)
 
 clean:
-	@/bin/rm -f $(OBJ)
+		@/bin/rm -rf -f $(OBJECT)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+		@/bin/rm -rf -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
